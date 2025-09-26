@@ -42,13 +42,13 @@ public class BookService : IBookService
             throw new KeyNotFoundException("Данные о пользователе или книге не найдены.");
 
         if (book.BorrowedByUserId != null)
-            throw new InvalidOperationException("Книга забронирована другим пользователем.");
+            throw new InvalidOperationException("Книга уже выдана.");
 
         if (userWithSub.Subscription == null || userWithSub.Subscription.ExpiryDate <= DateTime.UtcNow)
             throw new InvalidOperationException("У пользователя нет активного абонемента.");
 
         if (userWithBooks.BorrowedBooks.Count >= MaxBorrowedBooksLimit)
-            throw new InvalidOperationException("Пользователь достиг лимита забронированных книг.");
+            throw new InvalidOperationException("Пользователь достиг лимита выданных книг.");
 
         book.BorrowedByUserId = userId;
         _unitOfWork.Books.Update(book);
