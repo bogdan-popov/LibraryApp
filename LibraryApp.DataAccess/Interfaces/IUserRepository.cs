@@ -9,4 +9,6 @@ namespace LibraryApp.DataAccess.Interfaces;
 
 public interface IUserRepository : IRepository<User>
 {
+    Task<User?> GetUserWithBooksAsync(int userId);
+    Task<User?> GetUserWithSubscriptionAsync(int userId);
 }

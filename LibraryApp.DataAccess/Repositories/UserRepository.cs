@@ -1,5 +1,6 @@
 ﻿using LibraryApp.DataAccess.Interfaces;
 using LibraryApp.Domain.Entites;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,19 @@ public class UserRepository : Repository<User>, IUserRepository
 {
     public UserRepository(LibraryDbContext context) : base(context)
     {
+    }
+
+    public async Task<User?> GetUserWithBooksAsync(int userId)
+    {
+        return await _context.Users
+            .Include(u => u.BorrowedBooks)
+            .FirstOrDefaultAsync(u => u.Id == userId);
+    }
+
+    public async Task<User?> GetUserWithSubscriptionAsync(int userId)
+    {
+        return await _context.Users
+            .Include(u => u.Subscription)
+            .FirstOrDefaultAsync(u => u.Id == userId);
     }
 }

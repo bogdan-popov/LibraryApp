@@ -29,7 +29,7 @@ public class Repository<T> : IRepository<T> where T : class
         return await _dbSet.FindAsync(id);
     }
 
-    public void AddAsync(T entity)
+    public void Add(T entity)
     {
         _dbSet.AddAsync(entity);
     }
