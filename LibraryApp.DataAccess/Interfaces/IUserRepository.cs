@@ -11,4 +11,5 @@ public interface IUserRepository : IRepository<User>
 {
     Task<User?> GetUserWithBooksAsync(int userId);
     Task<User?> GetUserWithSubscriptionAsync(int userId);
+    Task<IEnumerable<User>> GetAllUsersWithSubscriptionsAsync();
 }
