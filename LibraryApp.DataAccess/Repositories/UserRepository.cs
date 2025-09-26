@@ -19,6 +19,7 @@ public class UserRepository : Repository<User>, IUserRepository
     {
         return await _context.Users
             .Include(u => u.BorrowedBooks)
+            .Include(u => u.Subscription)
             .FirstOrDefaultAsync(u => u.Id == userId);
     }
 
@@ -27,5 +28,12 @@ public class UserRepository : Repository<User>, IUserRepository
         return await _context.Users
             .Include(u => u.Subscription)
             .FirstOrDefaultAsync(u => u.Id == userId);
+    }
+
+    public async Task<IEnumerable<User>> GetAllUsersWithSubscriptionsAsync()
+    {
+        return await _context.Users
+            .Include(u => u.Subscription)
+            .ToListAsync();
     }
 }

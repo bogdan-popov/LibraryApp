@@ -57,7 +57,7 @@ public class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        return await _unitOfWork.Users.GetAllAsync();
+        return await _unitOfWork.Users.GetAllUsersWithSubscriptionsAsync();
     }
 
     public async Task<User?> GetUserByIdAsync(int userId)
