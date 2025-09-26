@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryApp.Domain.Entites;
+namespace LibraryApp.Domain.Entities;
 
 public class User
 {

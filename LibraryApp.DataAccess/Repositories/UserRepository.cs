@@ -1,5 +1,5 @@
 ﻿using LibraryApp.DataAccess.Interfaces;
-using LibraryApp.Domain.Entites;
+using LibraryApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 ﻿using LibraryApp.BusinessLogic.Interfaces;
 using LibraryApp.DataAccess.Interfaces;
-using LibraryApp.Domain.Entites;
+using LibraryApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,13 +71,13 @@ public class UserService : IUserService
         var user = await _unitOfWork.Users.GetUserWithSubscriptionAsync(userId);
         if (user == null) return null;
 
-        if (user.Subscription != null && user.Subscription.ExpireDay > DateTime.UtcNow)
+        if (user.Subscription != null && user.Subscription.ExpiryDate > DateTime.UtcNow)
             throw new InvalidOperationException("У пользователя есть активный абонемент.");
 
         var newSubscription = new Subscription
         {
             UserId = userId,
-            ExpireDay = expiryDate,
+            ExpiryDate = expiryDate,
         };
 
         user.Subscription = newSubscription;
