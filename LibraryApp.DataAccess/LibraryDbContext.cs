@@ -27,7 +27,7 @@ public class LibraryDbContext : DbContext
             .WithOne(b => b.BorrowedByUser)
             .HasForeignKey(b => b.BorrowedByUserId)
             .OnDelete(DeleteBehavior.SetNull); 
-            // Выбрано поведение SetNull, а не Cascade. При удалении пользователя его книги не удаляются из БД, а просто возвращаются в библиотеку (BorrowedByUserI = null)
+            // Выбрано поведение SetNull, а не Cascade. При удалении пользователя его книги не удаляются из БД, а просто возвращаются в библиотеку (BorrowedByUserId = null)
 
 
         modelBuilder.Entity<User>()
